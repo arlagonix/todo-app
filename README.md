@@ -61,11 +61,11 @@ Users should be able to:
   </tr>
   <tr>
     <td><code>npm&nbsp;run&nbsp;dev</code></td>
-    <td>Builds application in development mode, results may be found in <code>./build folder</code></td>
+    <td>Builds application in development mode, results may be found in <code>./build</code> folder</td>
   </tr>
   <tr>
     <td><code>npm&nbsp;run&nbsp;build</code></td>
-    <td>Builds application in production mode, results may be found in <code>./build folder</code>. Files are minimized, hash added to filenames to help when dealing with caching</td>
+    <td>Builds application in production mode, results may be found in <code>./build</code> folder. Files are minimized, hash added to filenames to help when dealing with caching</td>
   </tr>
 </table>
 
