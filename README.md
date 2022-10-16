@@ -56,6 +56,10 @@ Users should be able to:
     <th>Description</th>
   </tr>
   <tr>
+    <td><code>npm&nbsp;install</code></td>
+    <td>Installs required npm packages. Run it before building the project</td>
+  </tr>
+  <tr>
     <td><code>npm&nbsp;start</code></td>
     <td>Builds application in development mode, launches a server that opens in a new browser tab</td>
   </tr>
