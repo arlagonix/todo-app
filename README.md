@@ -87,7 +87,7 @@ Users should be able to:
   </tr>
   <tr>
     <td>src / scripts</td>
-    <td>Main file with TS</td>
+    <td>Definition of TS classes</td>
   </tr>
   <tr>
     <td colspan="2"></td>
