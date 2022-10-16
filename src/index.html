@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png" />
+    <title>Todo app</title>
+    <meta name="description" content="Todo List, Dark Theme" />
+  </head>
+  <body class="page">
+    <!-- PAGE BACKGROUND -->
+    <div class="page__background"></div>
+
+    <!-- HEADER -->
+    <header class="header page__header">
+      <h1 class="main-header">TODO</h1>
+      <div class="theme-switcher"></div>
+    </header>
+
+    <!-- ADD A TODO -->
+    <form class="input">
+      <input type="text" class="input__field" placeholder="Enter a todo item and press Enter" />
+      <button class="input__submit" disabled>
+        <img src="../static/icon-plus.svg" width="24px" height="24px" alt="Plus Icon" />
+      </button>
+    </form>
+
+    <!-- TODO LIST -->
+    <main class="list">
+      <article class="list__header">
+        <p class="list__tabs">
+          <span class="list__tab list__tab--active list__tab--type_all">All</span> (<span
+            class="list__all"
+            >0</span
+          >) <span class="list__tab list__tab--type_active">Active</span> (<span
+            class="list__active"
+            >0</span
+          >) <span class="list__tab list__tab--type_completed">Completed</span> (<span
+            class="list__completed"
+            >0</span
+          >)
+        </p>
+        <button class="list__clear">Clear completed</button>
+      </article>
+      <article class="list__empty list--display-none">
+        <p class="list__description-empty">No items to display</p>
+      </article>
+    </main>
+
+    <!-- INSTRUCTION -->
+    <p class="instruction">Drag and drop to reoreder the list</p>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="footer__description">
+        for
+        <a
+          href="https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW"
+          target="_blank"
+          draggable="false"
+          class="footer__link"
+          >Frontend&nbsp;Mentor</a
+        >
+        | by&nbsp;<a
+          href="https://github.com/arlagonix"
+          target="_blank"
+          draggable="false"
+          class="footer__link"
+          >Alexander&nbsp;Gorbunov</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
