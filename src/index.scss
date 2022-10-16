@@ -120,7 +120,6 @@ $main-font: "Josefin Sans", sans-serif;
   width: 48px;
   height: 48px;
   cursor: pointer;
-  // transition: 0.3s;
   border-radius: 50%;
 
   &:hover {
@@ -144,7 +143,6 @@ $main-font: "Josefin Sans", sans-serif;
   border-radius: $standard-border-radius;
   height: 48px;
   display: flex;
-  // transition: 0.3s;
   box-shadow: var(--shadow-color) 0 0 32px;
 
   &__field {
@@ -351,7 +349,15 @@ $main-font: "Josefin Sans", sans-serif;
     background: url(../static/icon-delete.svg) no-repeat center;
     pointer-events: initial;
     opacity: 1;
-    // transition: 0.3s;
+  }
+
+  @media (hover: none) {
+    &__del {
+      display: initial;
+      background: url(../static/icon-delete.svg) no-repeat center;
+      pointer-events: initial;
+      opacity: 1;
+    }
   }
 
   &:hover &__del:hover {
