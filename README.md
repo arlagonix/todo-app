@@ -1,4 +1,7 @@
-# Todo App
+<h1 align="center">Todo App</h1>
+<p align="center">
+ Todo App using TypeScript, SCSS. Built with Webpack
+</p>
 
 <p align="center">
   <img src="./docs/results/light-big.png" width="100%">
