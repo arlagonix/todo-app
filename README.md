@@ -166,15 +166,15 @@ Users should be able to:
     <th>Description</th>
   </tr>
   <tr>
-    <td><code>npm start</code></td>
+    <td><code>npm&nbsp;start</code></td>
     <td>Builds application in development mode, launches a server that opens in a new browser tab</td>
   </tr>
   <tr>
-    <td><code>npm run dev</code></td>
+    <td><code>npm&nbsp;run&nbsp;dev</code></td>
     <td>Builds application in development mode, results may be found in <code>./build folder</code></td>
   </tr>
   <tr>
-    <td><code>npm run build</code></td>
+    <td><code>npm&nbsp;run&nbsp;build</code></td>
     <td>Builds application in production mode, results may be found in <code>./build folder</code>. Files are minimized, hash added to filenames to help when dealing with caching</td>
   </tr>
 </table>
