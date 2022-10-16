@@ -48,7 +48,7 @@ Users should be able to:
 - **Github Pages**
   - Hosting
 
-## 🔨 How to build project
+## 🔨 Build project
 
 <table>
   <tr>
