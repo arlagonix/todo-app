@@ -1,4 +1,7 @@
-# Todo App
+<h1 align="center">Todo App</h1>
+<p align="center">
+ Todo App using TypeScript, SCSS. Built with Webpack
+</p>
 
 <p align="center">
   <img src="./docs/results/light-big.png" width="100%">
@@ -48,12 +51,16 @@ Users should be able to:
 - **Github Pages**
   - Hosting
 
-## 🔨 How to build project
+## 🔨 Build project
 
 <table>
   <tr>
     <th>Command</th>
     <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>npm&nbsp;install</code></td>
+    <td>Installs required npm packages. Run it before building the project</td>
   </tr>
   <tr>
     <td><code>npm&nbsp;start</code></td>
