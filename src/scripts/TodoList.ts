@@ -1,4 +1,4 @@
-import { updateItemStats, todoListOnScreen, session } from "../index";
+import { updateItemStats, session } from '../index';
 
 export interface TodoListItem {
   id: number;
@@ -6,26 +6,31 @@ export interface TodoListItem {
   content: string;
 }
 
+type Tabs = 'all' | 'active' | 'completed';
+
 /**
  * Contains model, view, controller for interaction with Todo list
  */
 export default class TodoList {
   private _maxId: number;
   private _items: TodoListItem[];
-  private _whereToRender: Element | null;
-  private _whatToShow: "all" | "active" | "completed";
+  private readonly _whereToRender: Element | null;
+  private _whatToShow: Tabs;
 
-  public constructor(newTodoListItems: TodoListItem[], todoListParent: Element | null) {
-    this._maxId = newTodoListItems ? newTodoListItems.length + 1 : 1;
-    this._items = newTodoListItems ? newTodoListItems : [];
+  public constructor(
+    newTodoListItems: TodoListItem[],
+    todoListParent: Element | null
+  ) {
+    this._maxId = newTodoListItems.length + 1;
+    this._items = newTodoListItems;
     this._whereToRender = todoListParent;
-    this._whatToShow = "all";
+    this._whatToShow = 'all';
   }
 
   /**
    * Returns the current tab
    */
-  public get whatToShow() {
+  public get whatToShow(): Tabs {
     return this._whatToShow;
   }
 
@@ -50,7 +55,7 @@ export default class TodoList {
    * Removes completed items from the list
    */
   public removeCompleted(): void {
-    this._items = this._items.filter((item) => item.isCompleted === false);
+    this._items = this._items.filter((item) => !item.isCompleted);
     this.renderList();
   }
 
@@ -72,11 +77,11 @@ export default class TodoList {
   /**
    * Returns a found list item. Throws exception when unable to find it
    */
-  public getItemById(itemId: number) {
-    for (let item of this._items) {
+  public getItemById(itemId: number): TodoListItem {
+    for (const item of this._items) {
       if (item.id === itemId) return item;
     }
-    throw "getItemById: Id not found";
+    throw new Error('getItemById: Id not found');
   }
 
   /**
@@ -85,10 +90,10 @@ export default class TodoList {
    * @returns Index of the found item. Throws exception when unable to find it
    */
   public getItemArrayIndexById(itemId: number): number {
-    for (let item of this._items) {
+    for (const item of this._items) {
       if (item.id === itemId) return this._items.indexOf(item);
     }
-    throw "getItemIndexById: Id not found";
+    throw new Error('getItemIndexById: Id not found');
   }
 
   /**
@@ -100,7 +105,7 @@ export default class TodoList {
     const itemFromIndex: number = this.getItemArrayIndexById(itemIdFrom);
     const itemToIndex: number = this.getItemArrayIndexById(itemIdTo);
 
-    let movedElement: TodoListItem = this._items[itemFromIndex];
+    const movedElement: TodoListItem = this._items[itemFromIndex];
     this._items.splice(itemFromIndex, 1);
     this._items.splice(itemToIndex, 0, movedElement);
 
@@ -127,7 +132,7 @@ export default class TodoList {
    * Returns items for the tab "Active" (unchecked)
    */
   public getActiveItems(): TodoListItem[] {
-    return this._items.filter((item) => item.isCompleted === false);
+    return this._items.filter((item) => !item.isCompleted);
   }
 
   /**
@@ -135,7 +140,7 @@ export default class TodoList {
    */
   public getActiveItemsNumber(): number {
     return this._items.reduce((total, item) => {
-      return total + (item.isCompleted === false ? 1 : 0);
+      return total + (item.isCompleted ? 0 : 1);
     }, 0);
   }
 
@@ -143,7 +148,7 @@ export default class TodoList {
    * Returns items for the tab "Completed"
    */
   public getCompletedItems(): TodoListItem[] {
-    return this._items.filter((item) => item.isCompleted === true);
+    return this._items.filter((item) => item.isCompleted);
   }
 
   /**
@@ -151,7 +156,7 @@ export default class TodoList {
    */
   public getCompletedItemsNumber(): number {
     return this._items.reduce((total, item) => {
-      return total + (item.isCompleted === true ? 1 : 0);
+      return total + (item.isCompleted ? 1 : 0);
     }, 0);
   }
 
@@ -163,22 +168,24 @@ export default class TodoList {
     session.todoListItems = this._items;
 
     // Removes all items from screen
-    while (document.querySelector(".item") !== null) {
-      todoListOnScreen?.removeChild(document.querySelector(".item") as Element);
+    while (document.querySelector('.item') !== null) {
+      this._whereToRender?.removeChild(
+        document.querySelector('.item') as Element
+      );
     }
 
     // Depending on the chosen tab show different items
     let itemsToRender: TodoListItem[];
     switch (this._whatToShow) {
-      case "all":
-      default:
-        itemsToRender = this._items;
-        break;
-      case "active":
+      case 'active':
         itemsToRender = this.getActiveItems();
         break;
-      case "completed":
+      case 'completed':
         itemsToRender = this.getCompletedItems();
+        break;
+      case 'all':
+      default:
+        itemsToRender = this._items;
         break;
     }
 
@@ -187,27 +194,30 @@ export default class TodoList {
 
     // If there are no items to display, shows text block
     // If there are some items, hides that text block
-    const listEmpty: Element | null = document.querySelector(".list__empty");
+    const listEmpty: Element | null = document.querySelector('.list__empty');
     if (itemsToRender.length === 0) {
-      listEmpty?.classList.remove("list--display-none");
-    } else listEmpty?.classList.add("list--display-none");
+      listEmpty?.classList.remove('list--display-none');
+    } else listEmpty?.classList.add('list--display-none');
 
     // Generate items from items array, append them to document fragment
     // Then append that document fragment to the DOM node
-    const listItemsToAppend: DocumentFragment = document.createDocumentFragment();
-    for (let listItem of itemsToRender) {
-      let newChild: HTMLElement = document.createElement("article");
-      newChild.classList.add("item");
+    const listItemsToAppend: DocumentFragment =
+      document.createDocumentFragment();
+    for (const listItem of itemsToRender) {
+      const newChild: HTMLElement = document.createElement('article');
+      newChild.classList.add('item');
       newChild.draggable = true;
       newChild.innerHTML = `
-          <input type="checkbox" name="test" id="${listItem.id}" class="item__checkbox" $
-        } ${listItem.isCompleted === true ? "checked" : ""}/>
+          <input type="checkbox" name="test" id="${
+            listItem.id
+          }" class="item__checkbox" $
+        } ${listItem.isCompleted ? 'checked' : ''}/>
           <label for="${listItem.id}" class="item__description"
             >${listItem.content}</label>
           <button class="item__del"></button>
         `;
       listItemsToAppend.appendChild(newChild);
     }
-    todoListOnScreen?.appendChild(listItemsToAppend);
+    this._whereToRender?.appendChild(listItemsToAppend);
   }
 }

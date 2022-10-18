@@ -1,4 +1,4 @@
-import { TodoListItem } from "./TodoList";
+import { TodoListItem } from './TodoList';
 
 /**
  * Stores information that has to be saved after page reload
@@ -10,60 +10,61 @@ export default class Session {
   public constructor() {
     let maxId: number = 1;
 
-    // If the theme is saved in local storage take it from there
-    const isDarkModeFromStorage = JSON.parse(localStorage.getItem("isDarkMode") ?? "null");
+    const isDarkModeFromStorage: boolean = JSON.parse(
+      localStorage.getItem('isDarkMode') ?? 'false'
+    );
     if (isDarkModeFromStorage) this._isDarkMode = isDarkModeFromStorage;
-    // Otherwise use theme from user's system settings
-    else
+    else {
       this._isDarkMode =
-        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia('(prefers-color-scheme: dark)')?.matches ?? false;
+    }
 
-    // If there are any items save in local storage, take them from local storage
-    // Otherwise use default list of items
-    this._todoListItems = JSON.parse(localStorage.getItem("todoListItems") ?? "null") ?? [
+    this._todoListItems = JSON.parse(
+      localStorage.getItem('todoListItems') ?? 'null'
+    ) ?? [
       {
         id: maxId++,
         isCompleted: false,
-        content: "Book flight to Israel",
+        content: 'Book flight to Israel',
       },
       {
         id: maxId++,
         isCompleted: false,
-        content: "Get a haircut",
+        content: 'Get a haircut',
       },
       {
         id: maxId++,
         isCompleted: false,
-        content: "Review Hibernate in Action second edition",
+        content: 'Review Hibernate in Action second edition',
       },
       {
         id: maxId++,
         isCompleted: false,
-        content: "Blog about workspace management",
+        content: 'Blog about workspace management',
       },
       {
         id: maxId++,
         isCompleted: false,
-        content: "Send copy to editor for review",
+        content: 'Send copy to editor for review',
       },
     ];
   }
 
-  get isDarkMode() {
+  public get isDarkMode(): boolean {
     return this._isDarkMode;
   }
 
-  get todoListItems() {
+  public get todoListItems(): TodoListItem[] {
     return this._todoListItems;
-  }
-
-  public toggleDarkMode() {
-    this._isDarkMode = !this._isDarkMode;
-    localStorage.setItem("isDarkMode", JSON.stringify(this._isDarkMode));
   }
 
   public set todoListItems(newTodoListItems: TodoListItem[]) {
     this._todoListItems = newTodoListItems;
-    localStorage.setItem("todoListItems", JSON.stringify(this._todoListItems));
+    localStorage.setItem('todoListItems', JSON.stringify(this._todoListItems));
+  }
+
+  public toggleDarkMode(): void {
+    this._isDarkMode = !this._isDarkMode;
+    localStorage.setItem('isDarkMode', JSON.stringify(this._isDarkMode));
   }
 }

@@ -1,24 +1,24 @@
-const common = require("./webpack.common");
-const { merge } = require("webpack-merge");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const common = require('./webpack.common');
+const { merge } = require('webpack-merge');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.(s(a|c)ss)$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
+      template: './src/index.html',
+      filename: './index.html',
       minify: {
         collapseWhitespace: true,
         keepClosingSlash: true,
@@ -29,15 +29,15 @@ module.exports = merge(common, {
         useShortDoctype: true,
         removeAttributeQuotes: true,
       },
-      scriptLoading: "defer",
+      scriptLoading: 'defer',
       hash: true,
       inject: true,
     }),
   ],
   optimization: {
     minimizer: [
-      `...`,
-      new MiniCssExtractPlugin({ filename: "index.css" }),
+      '...',
+      new MiniCssExtractPlugin({ filename: 'index.css' }),
       new CssMinimizerPlugin(),
       new TerserPlugin(),
     ],
