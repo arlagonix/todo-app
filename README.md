@@ -76,7 +76,7 @@ Users should be able to:
   </tr>
   <tr>
     <td><code>npm&nbsp;run&nbsp;lint</code></td>
-    <td>Doesn't build anything. Checks the quality of code style</td>
+    <td>Doesn't build anything. Checks code quality</td>
   </tr>
 </table>
 
