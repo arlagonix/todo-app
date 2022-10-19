@@ -180,8 +180,8 @@ Users should be able to:
     <td>Config for <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier VS Code plugin</a></td>
   </tr>
   <tr>
-    <td><code>tsconfig.json</code></td>
-    <td>JSON file that holds different compiler options for TypeScript</td>
+    <td><code>.eslintrc.js</code></td>
+    <td>Config for ESlint</td>
   </tr>
   <tr>
     <td><code>webpack.common.js</code></td>
