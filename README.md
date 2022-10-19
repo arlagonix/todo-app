@@ -1,6 +1,9 @@
 <h1 align="center">Todo App</h1>
 <p align="center">
- Todo App using TypeScript, SCSS. Built with Webpack
+  Coded with <code>HTML</code>, <code>SCSS</code>, <code>TypeScript</code>
+</p>
+<p align="center">
+  Built with <code>Webpack</code>
 </p>
 
 <p align="center">
