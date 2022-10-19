@@ -270,11 +270,11 @@ Users should be able to:
     <td>Removes formatting checks that contradict to the standards of prettier</td>
   </tr>
   <tr>
-    <td><code>eslint-config-standard-with-typescript
-      <br>eslint-plugin-import
-      <br>eslint-plugin-n
-      <br>eslint-plugin-promise</code></td>
-    <td>Comes with ESLint</td>
+    <td><code>eslint-config-standard-with-typescript</code>
+      <br><code>eslint-plugin-import</code>
+      <br><code>eslint-plugin-n</code>
+      <br><code>eslint-plugin-promise</code></td>
+    <td>Come with ESLint</td>
   </tr>
   
 </table>
