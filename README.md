@@ -74,6 +74,10 @@ Users should be able to:
     <td><code>npm&nbsp;run&nbsp;build</code></td>
     <td>Builds application in production mode, results may be found in <code>./build</code> folder. Files are minimized, hash added to filenames to help when dealing with caching</td>
   </tr>
+  <tr>
+    <td><code>npm&nbsp;run&nbsp;lint</code></td>
+    <td>Doesn't build anything. Checks the quality of code style</td>
+  </tr>
 </table>
 
 ## 📁 File Structure
@@ -172,6 +176,14 @@ Users should be able to:
     <td>JSON file that holds different compiler options for TypeScript</td>
   </tr>
   <tr>
+    <td><code>.prettierrc</code></td>
+    <td>Config for <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier VS Code plugin</a></td>
+  </tr>
+  <tr>
+    <td><code>tsconfig.json</code></td>
+    <td>JSON file that holds different compiler options for TypeScript</td>
+  </tr>
+  <tr>
     <td><code>webpack.common.js</code></td>
     <td>Contains configuration common for build and dev configs</td>
   </tr>
@@ -249,6 +261,21 @@ Users should be able to:
     <td><code>terser-webpack-plugin</code></td>
     <td>Is used by Webpack, minifies js (comes with webpack, no need to install it separately)</td>
   </tr>
+  <tr>
+    <td><code>eslint</code></td>
+    <td>Checks code quality</td>
+  </tr>
+  <tr>
+    <td><code>eslint-config-prettier</code></td>
+    <td>Removes formatting checks that contradict to the standards of prettier</td>
+  </tr>
+  <tr>
+    <td><code>eslint-config-standard-with-typescript
+      <br>eslint-plugin-import
+      <br>eslint-plugin-n
+      <br>eslint-plugin-promise</code></td>
+    <td>Comes with ESLint</td>
+  </tr>
   
 </table>
 
@@ -303,11 +330,15 @@ Theme is saved in local storage. Initially, if there is no theme in the storage,
 
 ```ts
 // If the theme is saved in local storage take it from there
-const isDarkModeFromStorage = JSON.parse(localStorage.getItem("isDarkMode") ?? "null");
+const isDarkModeFromStorage = JSON.parse(
+  localStorage.getItem('isDarkMode') ?? 'null'
+);
 if (isDarkModeFromStorage) this._isDarkMode = isDarkModeFromStorage;
 // Otherwise use theme from user's system settings
 else
-  this._isDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  this._isDarkMode =
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
 ```
 
 I also save the todo list items and their order in local storage. Thus after page refresh data doesn't disappear.
@@ -374,6 +405,8 @@ Feature: Switch a theme
 ## 🔗 Useful resources
 
 - [Webpack tutorial](https://www.youtube.com/watch?v=MpGLUVbqoYQ&ab_channel=freeCodeCamp.org) - Great tutorial about configuring Webpack!
+- [Prettier: VS Code plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Snippets and Syntax Highlight for Gherkin (Cucumber): VS Code plugin](https://marketplace.visualstudio.com/items?itemName=stevejpurves.cucumber)
 
 ## 👤 Author
 
